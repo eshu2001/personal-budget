@@ -1,150 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Budget</title>
-    <meta name="description" content="A free personal budger app">
-    <meta name="keywords" content="app free budget finance">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Budget</title>
+  <meta name="description" content="A Free personal budger app">
+  <meta name="keywords" content="app free budget finance">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
 <a href="#main" class="skip">Skip to content</a>
 
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/login.html">Login</a></li>
-            <li><a href="https://google.com">Google</a></li>
-        </ul>
-    </nav>
+<header>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/login.html">Login</a></li>
+      <li><a href="https://google.com" target="_blank" rel="noopener">Google</a></li>
+    </ul>
+  </nav>
 
-    <div class="hero">
-        <h1>Personal Budget</h1>
-        <h2>A personal-budget management app</h2>
-    </div>
+  <div class="hero" role="banner">
+    <h1>Personal Budget</h1>
+    <h2>A personal-budget management app</h2>
+  </div>
+</header>
 
-    <main class="center" id="main">
+<main class="center" id="main">
+  <div class="page-area">
 
-        <div class="page-area">
-
-            <article>
-                <h1>Stay on track</h1>
-                <p>
-                    Do you know where you are spending your money? If you really stop to track it down,
-                    you would get surprised! Proper budget management depends on real data... and this
+    <section>
+      <h2>Stay on track</h2>
+      <p>Do you know where you are spending your money? If you really stop to track it down,
+                   you would get surprised! Proper budget management depends on real data... and this
                     app will help you with that!
                 </p>
-            </article>
-    
-            <article>
-                <h1>Alerts</h1>
-                <p>
-                    What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Results</h1>
-                <p>
-                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
-                    because they know it is all good and accounted for.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Free</h1>
-                <p>
-                    This app is free!!! And you are the only one holding your data!
-                </p>
-            </article>
-    
-            <article>
-                <h1>Stay on track</h1>
-                <p>
-                    Do you know where you are spending your money? If you really stop to track it down,
-                    you would get surprised! Proper budget management depends on real data... and this
-                    app will help you with that!
-                </p>
-            </article>
-    
-            <article>
-                <h1>Alerts</h1>
-                <p>
-                    What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Results</h1>
-                <p>
-                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
-                    because they know it is all good and accounted for.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Chart</h1>
-                <p>
-                    <canvas id="myChart" width="400" height="400"></canvas>
-                </p>
-            </article>
+    </section>
 
-        </div>
+    <section>
+      <h2>Alerts</h2>
+      <p>Get instant alerts when you’re about to go over budget. Stay informed and avoid overspending.</p>
+    </section>
 
-    </main>
+    <section>
+      <h2>Results</h2>
+      <p>People who track their expenses pay off debt faster and feel more confident in their spending decisions. This app helps you build financial peace of mind.</p>
+    </section>
 
-    <footer class="bottom">
-        <div class="center">
-            All rights reserved &copy; Fabio Nolasco
-        </div>
-    </footer>
+    <section>
+      <h2>Free</h2>
+      <p>This app is 100% free, and your data stays with you — no sharing, no hidden costs.</p>
+    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <section>
+      <h2>Budget Chart</h2>
+      <canvas id="myChart" width="400" height="400" aria-label="Budget distribution pie chart" role="img"></canvas>
+    </section>
 
-    <script>
-        var dataSource = {
-                datasets: [
-                    {
-                        data: [],
-                        backgroundColor: [
-                            '#ffcd56',
-                            '#ff6384',
-                            '#36a2eb',
-                            '#fd6b19',
-                        ]
-                    }
-                ],
-                labels: []
-            };
+  </div>
+</main>
 
-        function createChart() {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myPieChart = new Chart(ctx, {
-                type: 'pie',
-                data: dataSource
-            });
-        }
+<footer class="bottom">
+  <div class="center">
+    <p>All rights reserved &copy; Fabio Nolasco</p>
+  </div>
+</footer>
 
-        function getBudget() {
-            axios.get('http://localhost:3000/budget')
-            .then(function (res) {
-                for (var i = 0; i < res.data.myBudget.length; i++) {
-                    dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
-                    dataSource.labels[i] = res.data.myBudget[i].title;
-                    createChart();
-                }
-            });
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" crossorigin="anonymous"></script>
 
-        getBudget();
-    </script>
+<script>
+  var dataSource = {
+    datasets: [{
+      data: [],
+      backgroundColor: ['#ffcd56','#ff6384','#36a2eb','#fd6b19']
+    }],
+    labels: []
+  };
+
+  function createChart() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, { type: 'pie', data: dataSource });
+  }
+
+  function getBudget() {
+    axios.get('http://localhost:3000/budget')
+      .then(function (res) {
+        res.data.myBudget.forEach((item, i) => {
+          dataSource.datasets[0].data[i] = item.budget;
+          dataSource.labels[i] = item.title;
+        });
+        createChart();
+      });
+  }
+  getBudget();
+</script>
 
 </body>
 </html>
