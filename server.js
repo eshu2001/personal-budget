@@ -7,6 +7,8 @@ const port = 3000;
 
 app.use(cors());
 
+app.use('/', express.static('public'));
+
 const budget = {
     myBudget: [
         {
@@ -24,6 +26,9 @@ const budget = {
     ]
 };
 
+app.get('/hello', (req, res) => {
+    res.send('Hello World!');
+});
 
 app.get('/budget', (req, res) => {
     res.json(budget);
