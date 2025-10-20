@@ -92,14 +92,14 @@
   }
 
   function getBudget() {
-    axios.get('http://localhost:3000/budget')
-      .then(function (res) {
-        res.data.myBudget.forEach((item, i) => {
-          dataSource.datasets[0].data[i] = item.budget;
+   axios.get('http://localhost:3000/budget')
+  .then(res => {
+      res.data.myBudget.forEach((item, i) => {
+          dataSource.datasets[0].data[i] = item.value; // <- changed from 'budget' to 'value'
           dataSource.labels[i] = item.title;
-        });
-        createChart();
       });
+      createChart();
+  });
   }
   getBudget();
 </script>
@@ -126,7 +126,7 @@ var width = 960,
     height = 450,
     radius = Math.min(width, height) / 2;
 
-// 🔹 Create SVG with proper size
+// Create SVG with proper size
 var svg = d3.select("#d3Chart")
   .append("svg")
   .attr("width", width)
@@ -152,23 +152,23 @@ var outerArc = d3.svg.arc()
 
 var key = function(d){ return d.data.label; };
 
-// 🔹 Color scale
+// Color scale
 var color = d3.scale.ordinal()
   .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b",
           "#a05d56", "#d0743c", "#ff8c00", "#36a2eb", "#ff6384"]);
 
-// 🔹 Fetch data from server.js
+// Fetch data from server.js
 function getBudgetData() {
   axios.get("http://localhost:3000/budget")
     .then(function(res) {
       var data = res.data.myBudget.map(item => {
-        return { label: item.title, value: item.budget };
+      return { label: item.title, value: item.value }; // value not budget
       });
       change(data);
     });
 }
 
-// 🔹 Update chart with data
+// Update chart with data
 function change(data) {
 
   /* ------- PIE SLICES -------*/
@@ -249,7 +249,7 @@ function change(data) {
   polyline.exit().remove();
 }
 
-// 🔹 Load budget data initially
+// Load budget data initially
 getBudgetData();
 </script>
 

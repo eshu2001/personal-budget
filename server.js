@@ -1,53 +1,54 @@
-// Budget API
-
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const path = require('path');
+const Budget = require('./models/budget_schema');
+
 const app = express();
 const port = 3000;
 
+// Middleware
 app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static(__dirname)); // serve HTML/CSS/JS files
 
-const budget = {
-    myBudget: [
-        {
-            title: 'Eat out',
-            budget: 25
-        },
-        {
-            title: 'Rent',
-            budget: 275
-        },
-        {
-            title: 'Grocery',
-            budget: 100
-        },
-        {
-            title: 'Transport',
-            budget: 210
-        },
-        {
-            title: 'Clothes',
-            budget: 150
-        },
-        {
-            title: 'Entertainment',
-            budget: 125
-        },
-        {
-            title: 'Miscellaneous',
-            budget: 90
-        },
-    ]
-};
 
-app.get('/hello', (req, res) => {
-    res.send('Hello World!');
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/personal_budget', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+// Serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html')); // adjust relative path
 });
 
-app.get('/budget', (req, res) => {
-    res.json(budget);
+// GET budget items
+app.get('/budget', async (req, res) => {
+    try {
+        const budgetItems = await Budget.find({});
+        res.json({ myBudget: budgetItems });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// POST new budget item
+app.post('/budget', async (req, res) => {
+    try {
+        const { title, value, color } = req.body;
+        const newBudget = new Budget({ title, value, color });
+        await newBudget.save();
+        res.status(201).json(newBudget);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 });
 
 app.listen(port, () => {
-    console.log(`API served at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
